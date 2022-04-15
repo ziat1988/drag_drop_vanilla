@@ -29,9 +29,9 @@
 }  
 
 #ship{
-  
+  display:inline-block;
   z-index: 999;
-
+  white-space : nowrap; /* this does the trick */
   .cell{
     background-color:#F0DB4F;
     margin-right: -4px;
