@@ -26,25 +26,43 @@
 
 .choose-container{
   height: 200px;
+
+ // display: flex;
+  justify-content:space-around;
 }  
 
-#ship{
-  display:inline-block;
+
+.ship-container{
+  display: inline-block;
   z-index: 999;
   white-space : nowrap; /* this does the trick */
   .cell{
     background-color:#F0DB4F;
-    margin-right: -4px;
-    &:nth-child(2),&:nth-child(3), &:nth-child(4) {
-      display: inline-block;
-    }
-
   }
+
 
   &:after{
     content: "";
     display: block;
     clear: both;
+  }
+}
+
+#ship1{
+  .cell{
+   // margin-right: -4px;
+    &:nth-child(2),&:nth-child(3), &:nth-child(4) {
+      float: left;
+    }
+
+  }
+  
+}
+
+
+#ship2{
+  .cell{
+      float: left;
   }
 }
 

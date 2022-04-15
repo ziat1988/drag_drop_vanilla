@@ -39,26 +39,29 @@ document.getElementById("app").addEventListener("dragover", overZone);
 document.getElementById("app").addEventListener("dragleave", leaveZone);
 document.getElementById("app").addEventListener("drop", dropZone);
 
-document.getElementById("ship").addEventListener("dragstart", shipDragStart);
-document.getElementById("ship").addEventListener("mousedown", getCellClicked);
 //document.getElementById("ship").addEventListener("mouseup", resetCellClicked);
 
 // Global STATE:
 let cellExplicit = null;
 const SIZE_PLAN = 9;
 let VALID_DROP = true;
+let idShip = null;
+
+function startDragAllShip() {
+  Array.from(document.getElementsByClassName("ship-container")).forEach((ship) => {
+    ship.addEventListener("dragstart", shipDragStart);
+    ship.addEventListener("mousedown", getCellClicked);
+  });
+}
 
 function shipDragStart(e) {
-  console.log(e);
+  console.log(e.target);
+  idShip = e.target.id;
+  e.dataTransfer.setData("text/plain", e.target.id);
 }
 
 function getCellClicked(e) {
   cellExplicit = e.target;
-}
-
-function resetCellClicked(e) {
-  console.log("reset here");
-  cellExplicit = null;
 }
 
 function validTargetDrop(arrCoord) {
@@ -85,9 +88,9 @@ function dropZone(e) {
   const coordRootDiv = getPositionCell(cellRoot);
 
   // change position
-  document.getElementById("ship").style.position = "absolute";
-  document.getElementById("ship").style.top = coordRootDiv.top + "px";
-  document.getElementById("ship").style.left = coordRootDiv.left + "px";
+  document.getElementById(idShip).style.position = "absolute";
+  document.getElementById(idShip).style.top = coordRootDiv.top + "px";
+  document.getElementById(idShip).style.left = coordRootDiv.left + "px";
 
   // reset all highlight
   cleanUpHighlight();
@@ -128,8 +131,6 @@ function enterZone(e) {
   }
 }
 
-function transformCoord(cellClicked) {}
-
 /**
  *
  * TODO: abstract ship type in argument
@@ -143,7 +144,7 @@ function getAreaHighLight(targetDiv) {
   let arrArea = [];
   const coordTarget = targetDiv.dataset;
 
-  const listCell = document.getElementById("ship").getElementsByClassName("cell");
+  const listCell = document.getElementById(idShip).getElementsByClassName("cell");
   const arrCoordExplicit = cellExplicit.dataset.cell.split(",");
 
   // calculer X, Y  transform coordinate
@@ -197,6 +198,7 @@ function createCell() {
 }
 
 createCell();
+startDragAllShip();
 
 /************* */
 
@@ -235,6 +237,7 @@ function dragEnter(e) {
 
 function dragOver(e) {
   e.preventDefault();
+  console.log(e.dataTransfer.getData("text/plain"));
   e.target.classList.add("drag-over");
 }
 
