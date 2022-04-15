@@ -171,7 +171,8 @@ function highLightArea(arrArea) {
 
 function getPositionCell(cell) {
   const offsetCell = cell.getBoundingClientRect();
-  const top = offsetCell.top;
+  console.log(offsetCell);
+  const top = offsetCell.top + window.scrollY;
   const left = offsetCell.left;
   return { top, left };
 }
