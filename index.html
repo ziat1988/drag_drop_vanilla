@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+
+
+<div class="choose-container">
+  <div id="ship" draggable="true">
+    <div class="cell" data-cell="0,0"></div>
+    <div class="cell" data-cell="0,1" style="float:left"></div>
+    <div class="cell" data-cell="1,1" style="float:left"></div>
+    <div class="cell" data-cell="2,1" style="float:left"></div>
+  </div>
+
+</div>    
+<div id="app"></div>    
+
+<section id ="my-try" hidden>
+  <div class="container">
+    <img id="my-img" src="https://picsum.photos/200/300">
+ 
+    <div class="item">This is text</div>
+ 
+ 
+    <div id="dropzone" class="target"></div>
+ </div>
+</section>
+
+<section id ="course">
+
+  <div class="container">
+    <div class="drop-targets">
+        <div class="box">
+            <div class="item" id="item" draggable="true">
+            </div>
+        </div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</div>
+
+</section>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
